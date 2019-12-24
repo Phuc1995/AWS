@@ -1,0 +1,7 @@
+pip install boto3
+
+- Setup aws configure:
+	+ https://console.aws.amazon.com/iam/home?region=us-east-2#/security_credentials then Create access key
+	+ use CLI on window: aws2 configure then input ()	
+	
+- Index: https://aws.amazon.com/getting-started/projects/create-manage-nonrelational-database-dynamodb/4/
