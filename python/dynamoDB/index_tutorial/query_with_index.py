@@ -23,7 +23,7 @@ resp = table.query(
     IndexName="CategoryIndex",
     KeyConditionExpression=Key('Category').eq('Suspense'),
 )
-print("Test: ",table.global_secondary_indexes[0]['IndexStatus'] != 'ACTIVE')
+
 print("The query returned the following items:")
 for item in resp['Items']:
     print(item)

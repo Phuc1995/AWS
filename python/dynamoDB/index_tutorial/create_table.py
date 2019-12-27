@@ -12,11 +12,12 @@ try:
             {
                 "AttributeName": "Author",
                 "KeyType": "HASH"
+                
             },
             {
                 "AttributeName": "Title",
                 "KeyType": "RANGE"
-            }
+            },
         ],
         # Any attributes used in KeySchema or Indexes must be declared in AttributeDefinitions
         AttributeDefinitions=[
@@ -27,7 +28,7 @@ try:
             {
                 "AttributeName": "Title",
                 "AttributeType": "S"
-            }
+            },
         ],
         # ProvisionedThroughput controls the amount of data you can read or write to DynamoDB per second.
         # You can control read and write capacity independently.

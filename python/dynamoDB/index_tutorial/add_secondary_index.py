@@ -10,21 +10,22 @@ try:
         # Any attributes used in your new global secondary index must be declared in AttributeDefinitions
         AttributeDefinitions=[
             {
-                "AttributeName": "Title",
+                "AttributeName": "Category",
                 "AttributeType": "S"
             },
+            
         ],
         # This is where you add, update, or delete any global secondary indexes on your table.
         GlobalSecondaryIndexUpdates=[
             {
                 "Create": {
                     # You need to name your index and specifically refer to it when using it for queries.
-                    "IndexName": "TitleIndex",
+                    "IndexName": "CategoryIndex",
                     # Like the table itself, you need to specify the key schema for an index.
                     # For a global secondary index, you can use a simple or composite key schema.
                     "KeySchema": [
                         {
-                            "AttributeName": "Title",
+                            "AttributeName": "Category",
                             "KeyType": "HASH"
                         }
                     ],

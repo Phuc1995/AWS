@@ -8,7 +8,7 @@ table = dynamodb.Table('Books')
 # We're using the Key object from the Boto3 library to specify that we want the attribute name ("Author")
 # to equal "John Grisham" by using the ".eq()" method.
 resp = table.query(KeyConditionExpression=Key('Author').eq('John Grisham'))
-print("Test: ", resp)
+
 print("The query returned the following items:")
 for item in resp['Items']:
     print(item)

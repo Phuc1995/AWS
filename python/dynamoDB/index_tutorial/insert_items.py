@@ -19,3 +19,5 @@ with table.batch_writer() as batch:
     batch.put_item(Item={"Author": "William Shakespeare", "Title": "Hamlet",
         "Category": "Drama", "Formats": { "Hardcover": "GVJZQ7JK",
         "Paperback": "A4TFUR98", "Audiobook": "XWMGHW96" } })
+
+print("Insert item successs")
