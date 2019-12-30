@@ -22,7 +22,7 @@ class Game:
         self.end_time = item.get('end_time', {}).get('S')
 
     def __repr__(self):
-        return "Game<{} -- {}>".format(self.game_id, self.map)
+        return "Game<{} -- {} -- {}>".format(self.game_id, self.map, self.creator)
 
 
 class UserGameMapping:

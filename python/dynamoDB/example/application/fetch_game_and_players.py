@@ -16,10 +16,13 @@ def fetch_game_and_users(game_id):
             ":metadata": { "S": "#METADATA#{}".format(game_id) },
             ":users": { "S": "USER$" },
         },
+        #ScanIndexForward is the correct way to get items in descending order by the range key of the table or index you are querying
         ScanIndexForward=True
     )
 
     game = Game(resp['Items'][0])
+    print('')
+    #print('Test: ', game)
     game.users = [UserGameMapping(item) for item in resp['Items'][1:]]
 
     return game
@@ -27,7 +30,7 @@ def fetch_game_and_users(game_id):
 
 game = fetch_game_and_users(GAME_ID)
 
-print(game)
+print('Test: ',game)
 for user in game.users:
     print(user)
 

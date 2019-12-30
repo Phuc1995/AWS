@@ -17,6 +17,7 @@ def start_game(game_id, requesting_user, start_time):
                 "PK": { "S": "GAME#{}".format(game_id) },
                 "SK": { "S": "#METADATA#{}".format(game_id) }
             },
+            #First we remove the open_timestamp attribute from the entity, and then we set the start_time attribute to the game’s start time
             UpdateExpression="REMOVE open_timestamp SET start_time = :time",
             ConditionExpression="people = :limit AND creator = :requesting_user AND attribute_not_exists(start_time)",
             ExpressionAttributeValues={

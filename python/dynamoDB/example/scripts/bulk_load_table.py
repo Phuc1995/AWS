@@ -7,7 +7,7 @@ table = dynamodb.Table('battle-royale')
 
 items = []
 
-with open('scripts/items.json', 'r') as f:
+with open('items.json') as f:
     for row in f:
         items.append(json.loads(row))
 

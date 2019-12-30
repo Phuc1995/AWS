@@ -13,6 +13,7 @@ def join_game_for_user(game_id, username):
         resp = dynamodb.transact_write_items(
             TransactItems=[
                 {
+                    # If such an entity did already exist, that would mean this user already joined the game.
                     "Put": {
                         "TableName": "battle-royale",
                         "Item": {
@@ -21,7 +22,10 @@ def join_game_for_user(game_id, username):
                             "game_id": {"S": game_id },
                             "username": {"S": username }
                         },
+                        #https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html
                         "ConditionExpression": "attribute_not_exists(SK)",
+                        #to get item attributes when a condition check fails
+                        #https://docs.amazonaws.cn/en_us/amazondynamodb/latest/APIReference/API_ConditionCheck.html
                         "ReturnValuesOnConditionCheckFailure": "ALL_OLD"
                     },
                 },
@@ -38,6 +42,7 @@ def join_game_for_user(game_id, username):
                             ":p": { "N": "1" },
                             ":limit": { "N": "50" }
                         },
+                        #the valid values are: NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW
                         "ReturnValuesOnConditionCheckFailure": "ALL_OLD"
                     }
                 }
