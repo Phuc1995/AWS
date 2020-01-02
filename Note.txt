@@ -7,3 +7,8 @@ pip install boto3
 - Index:  https://aws.amazon.com/getting-started/projects/create-manage-nonrelational-database-dynamodb/4/
 		+ https://docs.amazonaws.cn/en_us/amazondynamodb/latest/developerguide/SecondaryIndexes.html
 		 https://aws.amazon.com/vi/dynamodb/getting-started/
+		 
+- DocumentDB: 
+	+ crete a default VPC:  aws2 ec2 create-default-vpc, a
+	+ https://www.joshcarlisle.io/blog/2017/3/1/building-a-rest-service-with-nodejs-documentdb-and-typescript
+	+ phuc123
