@@ -18,6 +18,7 @@ def find_games_for_user(username):
             },
             ScanIndexForward=True
         )
+        print(resp)
     except Exception as e:
         print('Index is still backfilling. Please try again in a moment.')
         return None

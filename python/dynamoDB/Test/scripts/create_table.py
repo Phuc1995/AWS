@@ -7,7 +7,7 @@ try:
         TableName='DATE',
         AttributeDefinitions=[
             {
-                "AttributeName": "USER",
+                "AttributeName": "USER1",
                 "AttributeType": "S"
             },
             {
@@ -17,7 +17,7 @@ try:
         ],
         KeySchema=[
             {
-                "AttributeName": "USER",
+                "AttributeName": "USER1",
                 "KeyType": "HASH"
             },
             {
