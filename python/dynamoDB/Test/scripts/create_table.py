@@ -11,7 +11,7 @@ try:
                 "AttributeType": "S"
             },
             {
-                "AttributeName": "DATE",
+                "AttributeName": "DATE1",
                 "AttributeType": "S"
             }
         ],
@@ -21,7 +21,7 @@ try:
                 "KeyType": "HASH"
             },
             {
-                "AttributeName": "DATE",
+                "AttributeName": "DATE1",
                 "KeyType": "RANGE"
             }
         ],

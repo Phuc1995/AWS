@@ -12,11 +12,18 @@ table = dynamodb.Table('DATE')
 
 # The BatchWriteItem API allows us to write multiple items to a table in one request.
 for i in range(1,29):
-    now = datetime.datetime.now()
-    month = now + relativedelta(months=i)
+    now = str(datetime.date.today() + relativedelta(days=i))
     with table.batch_writer() as batch:
         batch.put_item(Item={"ID":i,
-        "DATE": month.isoformat(" ","seconds"),
+        "DATE1": now,
+        "USER1": "USER"+ str(i) 
+        })
+
+for i in range(1,29):
+    now = str(datetime.date.today() + relativedelta(months=i))
+    with table.batch_writer() as batch:
+        batch.put_item(Item={"ID":i,
+        "DATE1": now,
         "USER1": "USER1" 
         })
     
