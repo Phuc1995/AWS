@@ -37,7 +37,7 @@ try:
                     # Global secondary indexes have read and write capacity separate from the underlying table.
                     "ProvisionedThroughput": {
                         "ReadCapacityUnits": 1,
-                        "WriteCapacityUnits": 1,
+                        "WriteCapacityUnits": 40,
                     }
                 }
             }

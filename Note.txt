@@ -12,3 +12,6 @@ pip install boto3
 	+ crete a default VPC:  aws2 ec2 create-default-vpc, a
 	+ https://www.joshcarlisle.io/blog/2017/3/1/building-a-rest-service-with-nodejs-documentdb-and-typescript
 	+ phuc123
+	
+aws dynamodb scan --table-name <TABLE_NAME> --select "COUNT"
+telnet 

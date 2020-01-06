@@ -33,8 +33,8 @@ try:
         # ProvisionedThroughput controls the amount of data you can read or write to DynamoDB per second.
         # You can control read and write capacity independently.
         ProvisionedThroughput={
-            "ReadCapacityUnits": 1,
-            "WriteCapacityUnits": 1
+            "ReadCapacityUnits": 40,
+            "WriteCapacityUnits": 40,
         }
     )
     print("Table created successfully!")

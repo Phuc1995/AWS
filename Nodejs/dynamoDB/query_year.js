@@ -6,18 +6,21 @@ AWS.config.update({
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
-var year = 1925
+var date = "2"
+var user = "USER2"
 
-console.log("Querying for movies from ",year + ": ");
+console.log("Querying : ");
 
 var params = {
-    TableName : "Movies",
-    KeyConditionExpression: "#yr = :yyyy",
-    ExpressionAttributeNames:{
-        "#yr": "year"
+    TableName : "DATE",
+    KeyConditionExpression: "#USER1 = :user and #DATE1 = :date",
+    ExpressionAttributeNames: {
+        "#USER1":"USER1",
+        "#DATE1":"DATE1"
     },
     ExpressionAttributeValues: {
-        ":yyyy": year
+        ":user": user,
+        ":date": date,
     }
 };
 
@@ -27,7 +30,7 @@ docClient.query(params, function(err, data) {
     } else {
         console.log("Query succeeded.");
         data.Items.forEach(function(item) {
-            console.log(" -", item.year + ": " + item.title);
+            console.log(" -", item.USER1 + ": " + item.DATE1);
         });
     }
 });

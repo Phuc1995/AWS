@@ -4,7 +4,7 @@ from entities import Game, UserGameMapping
 
 dynamodb = boto3.client('dynamodb')
 
-GAME_ID = "3d4285f0-e52b-401a-a59b-112b38c4a26b"
+GAME_ID = " -e52b-401a-a59b-112b38c4a26b"
 
 
 def fetch_game_and_users(game_id):

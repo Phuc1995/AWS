@@ -11,7 +11,7 @@ try:
                 "AttributeType": "S"
             },
             {
-                "AttributeName": "DATE",
+                "AttributeName": "DATE1",
                 "AttributeType": "S"
             }
         ],
@@ -21,13 +21,13 @@ try:
                 "KeyType": "HASH"
             },
             {
-                "AttributeName": "DATE",
+                "AttributeName": "DATE1",
                 "KeyType": "RANGE"
             }
         ],
         ProvisionedThroughput={
-            "ReadCapacityUnits": 1,
-            "WriteCapacityUnits": 1
+            "ReadCapacityUnits": 20,
+            "WriteCapacityUnits": 20
         }
     )
     print("Table created successfully.")
