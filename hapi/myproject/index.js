@@ -2,13 +2,12 @@
 var AWS = require("aws-sdk");
 AWS.config.update({
     region: "us-east-2",
-  });
+});
+
+console.log(parseFloat(1578367802.019376))
 var docClient = new AWS.DynamoDB.DocumentClient();
-
 const Hapi = require('@hapi/hapi');
-
 const init = async () => {
-
     const server = Hapi.server({
         port: 3000,
         host: 'localhost'
@@ -16,54 +15,103 @@ const init = async () => {
 
     server.route({
         method: 'GET',
-        path: '/{user}/{date}',
+        path: '/api/oneday/{postId}/{id}',
         handler: (request, h) => {
+
             var params = {
-                TableName : "DATE",
-                KeyConditionExpression: "USER1 = :user and DATE1 = :date",
+                TableName: "Comment",
+                KeyConditionExpression: "postId = :postId and id = :id",
                 ExpressionAttributeValues: {
-                    ":user":  request.params.user,
-                    ":date": request.params.date,
+                    ":postId": parseInt(request.params.postId),
+                    ":id": parseFloat(request.params.id),
                 }
             };
-            
-            docClient.query(params, function(err, data) {
-                if (err) {
-                    console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
-                } else {
-                    console.log("Query succeeded.");
-                    data.Items.forEach(function(item) {
-                        console.log(" -", item.USER1 + ": " + item.DATE1);
-                    });
-                }
+            const promise = new Promise((resolve, reject) => {
+                docClient.query(params, function (err, data) {
+                    if (!err) {
+                        console.log(typeof(result))
+                        console.log("Query succeeded.");
+                        data.Items.forEach(function (item) {
+                            var result = item.postId + " " + item.id + " " + item.email;
+                            resolve(result)
+                        });
+                    } else {
+                        console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+                    }
+                });
             });
-            
+            return promise
         }
-        
     });
 
-    
     server.route({
         method: 'GET',
-        path: '/test',
+        path: '/api/postId/{postId}',
         handler: (request, h) => {
-            const user = {
-                firstName: 'John',
-                lastName: 'Doe',
-                userName: 'JohnDoe',
-                id: 123
-            }
-    
-            return "aaaaa";
+
+            var params = {
+                TableName: "Comment",
+                KeyConditionExpression: "postId = :postId",
+                ExpressionAttributeValues: {
+                    ":postId": parseInt(request.params.postId),
+                }
+            };
+            const promise = new Promise((resolve, reject) => {
+                docClient.query(params, function (err, data) {
+                    if (!err) {
+                        var result = [] 
+                        console.log("Query succeeded.");
+                        data.Items.forEach(function (item) {
+                            result.push(item.postId + " " + item.id + " " + item.email)
+                        });
+                        resolve(result)
+                    } else {
+                        console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+                    }
+                });
+            });
+            return promise
         }
     });
-    
+
+    server.route({
+        method: 'GET',
+        path: '/api/query/{postId}/{id1}/{id2}',
+        handler: (request, h) => {
+
+            var params = {
+                TableName: "Comment",
+                KeyConditionExpression: "postId = :postId and id between :id1 and :id2",
+                ExpressionAttributeValues: {
+                    ":postId": parseInt(request.params.postId),
+                    ":id1": parseFloat(request.params.id1),
+                    ":id2": parseFloat(request.params.id2),
+                },
+                ScanIndexForward : false
+            };
+            const promise = new Promise((resolve, reject) => {
+                docClient.query(params, function (err, data) {
+                    if (!err) {
+                        var result = [] 
+                        console.log("Query succeeded.");
+                        data.Items.forEach(function (item) {
+                            result.push(item.postId + " " + item.id + " " + item.email)
+                            console.log(item.postId + " " + item.id + " " + item.email)
+                        });
+                        resolve(result)
+                    } else {
+                        console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+                    }
+                });
+            });
+            return promise
+        }
+    });
     await server.start();
     console.log('Server running on %s', server.info.uri);
 };
 
 process.on('unhandledRejection', (err) => {
-
     console.log(err);
     process.exit(1);
 });
