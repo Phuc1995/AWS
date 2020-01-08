@@ -15,3 +15,6 @@ pip install boto3
 	
 aws dynamodb scan --table-name <TABLE_NAME> --select "COUNT"
 telnet 
+
+- All items with the same partition key are stored together
+- Amazon DynamoDB Accelerator (DAX)
